@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title th:text="${title}"></title>
+  <title th:text="${title}"> Modamo Beauty Studio</title>
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="assets/css/style-liberty.css">
+  <link rel="stylesheet" th:href="@{/assets/css/style-liberty.css}">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -36,10 +36,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Главная <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">О нас</a>
+              <a class="nav-link" href="/about">О нас</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -47,22 +47,22 @@
                 Услуги
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="nav-link" href="women.html">Женский зал</a>
-                <a class="nav-link drop-text" href="man.html" >Мужской зал</a>
-                <a class="nav-link drop-text" href="nogti.html" >Ногтевой сервис</a>
-                <a class="nav-link drop-text" href="brovi.html" >Брови/Ресницы</a>
-                <a class="nav-link drop-text" href="makeup.html" >Make Up</a>
-                <a class="nav-link drop-text" href="face.html" >Массаж</a>
-                <a class="nav-link drop-text" href="botox.html" >Ботокс</a>
-                <a class="nav-link drop-text" href="epilation.html" >Эпиляция</a>
-                <a class="nav-link drop-text" href="sertificate.html" >Подарочные сертификаты</a>
+                <a class="nav-link" href="/women">Женский зал</a>
+                <a class="nav-link drop-text" href="/man" >Мужской зал</a>
+                <a class="nav-link drop-text" href="/nogti" >Ногтевой сервис</a>
+                <a class="nav-link drop-text" href="/brovi" >Брови/Ресницы</a>
+                <a class="nav-link drop-text" href="/makeup" >Make Up</a>
+                <a class="nav-link drop-text" href="/face" >Массаж</a>
+                <a class="nav-link drop-text" href="/botox" >Ботокс</a>
+                <a class="nav-link drop-text" href="/epilation" >Эпиляция</a>
+                <a class="nav-link drop-text" href="/sertificate" >Подарочные сертификаты</a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="price.html">Прайс</a>
+              <a class="nav-link" href="/price">Прайс</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Контакты</a>
+              <a class="nav-link" href="/contact">Контакты</a>
             </li>
           </ul>
           <div class="navbar-brand2">
@@ -95,212 +95,7 @@
 </script>
 <!-- disable body scroll which navbar is in active -->
 
-<div class="w3l-hero-headers-9">
-  <div class="css-slider">
-    <input id="slide-11" type="radio" name="slides" checked>
-    <section class="slide slide-one">
-      <div class="container">
-        <div class="banner-text">
 
-          <h3>Добро пожаловать <br>
-            в салон красоты "Modamo"</h3>
-          <p>Место, где люди находят свой стиль!</p>
-          <a href="" class="btn logo-button top-margin">З а п и с а т ь с я</a>
-        </div>
-      </div>
-      <nav>
-        <label for="slide-3" class="prev">&#10094;</label>
-        <label for="slide-2" class="next">&#10095;</label>
-      </nav>
-    </section>
-
-    <input id="slide-22" type="radio" name="slides">
-    <section class="slide slide-two">
-      <div class="container">
-        <div class="banner-text">
-          <h3>Салон красоты <br>
-            не только для леди </h3>
-          <p>Добро пожаловать в мир красоты, здоровья, гармонии души и тела.
-            Сочетая инновационные аппартные технологии и передовые косметические
-            средства мы продлеваем молодость и красоту.</p>
-          <a href="" class="btn logo-button top-margin"> З а п и с а т ь с я </a>
-        </div>
-      </div>
-      <nav>
-        <label for="slide-1" class="prev">&#10094;</label>
-        <label for="slide-3" class="next">&#10095;</label>
-      </nav>
-    </section>
-
-    <input id="slide-33" type="radio" name="slides">
-    <section class="slide slide-three">
-      <div class="container">
-        <div class="banner-text">
-          <h3>и для <br>
-            джентельменов!</h3>
-          <p>Мужские и детские стрижки,
-            а также бритьё и спа-услуги!</p>
-          <a href="" class="btn logo-button top-margin"> З а п и с а т ь с я </a>
-        </div>
-      </div>
-      <nav>
-        <label for="slide-2" class="prev">&#10094;</label>
-        <label for="slide-1" class="next">&#10095;</label>
-      </nav>
-    </section>
-    <header>
-      <label for="slide-1" id="slide-1"></label>
-      <label for="slide-2" id="slide-2"></label>
-      <label for="slide-3" id="slide-3"></label>
-    </header>
-  </div>
-</div>
-<section class="w3l-covers-18">
-  <div class="covers-main ">
-    <div class="container">
-      <div class="gallery-image">
-        <div class="column color-2 ">
-          <div>
-            <h4 class=" ">Наши мастера всегда к вашим услугам!</h4>
-            <p class="para ">Это не просто услуги, это атмосфера.
-
-              Наш женский рай, где всегда вас рады видеть, дарить красоту, отличное настроение, заботу и внимание.</p>
-            <a href="about.html" class="action-button btn mt-md-4 mt-3">П о д р о б н е е </a>
-          </div>
-        </div>
-        <div class="img-box">
-          <img src="assets/images/im7.jpg" alt="product" class="img-responsive ">
-          <div class="transparent-box">
-            <div class="caption">
-              <p>Стрижки</p>
-              <p class="opacity-low">Salon</p>
-            </div>
-          </div>
-        </div>
-        <div class="img-box">
-          <img src="assets/images/im2.jpg" alt="product" class="img-responsive ">
-          <div class="transparent-box">
-            <div class="caption">
-              <p>Барбершоп</p>
-              <p class="opacity-low">Salon</p>
-            </div>
-          </div>
-        </div>
-        <div class="img-box">
-          <img src="assets/images/im4.jpg" alt="product" class="img-responsive ">
-          <div class="transparent-box">
-            <div class="caption">
-              <p>Брови</p>
-              <p class="opacity-low">Salon</p>
-            </div>
-          </div>
-        </div>
-        <div class="img-box">
-          <img src="assets/images/im10.jpg" alt="product" class="img-responsive ">
-          <div class="transparent-box">
-            <div class="caption">
-              <p>Ногти</p>
-              <p class="opacity-low">Salon</p>
-            </div>
-          </div>
-        </div>
-        <div class="img-box">
-          <img src="assets/images/im8.jpg" alt="product" class="img-responsive ">
-          <div class="transparent-box">
-            <div class="caption">
-              <p>СПА</p>
-              <p class="opacity-low">Salon</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="w3l-teams-15">
-  <div class="team-single-main ">
-    <div class="container">
-
-      <div class="column2 image-text">
-        <h3 class="team-head ">Посвяти это время себе, подари наслаждение❤️</h3>
-        <p class="para  text ">
-          Салон красоты «Modamo» – новая философия по уходу за волосами. Полный спектр
-          парикмахерских услуг, стрижки горячими ножницами, системы программ интенсивного
-          спа-восстановления волос любой степени повреждения препаратами Label (Япония).
-          Косметология, естественные брови/реснички,вечерние макияжи, все виды массажа, ногтевой сервис,
-          услуга «Аппаратный педикюр» с
-          приятным дополнением. </p>
-        <a href="contact.html" class="btn logo-button top-margin mt-4">З а п и с а т ь с я </a>
-      </div>
-    </div>
-  </div>
-  </div>
-</section>
-<section class="w3l-call-to-action_9">
-  <div class="call-w3 ">
-    <div class="container">
-      <div class="grids">
-        <div class="grids-content row">
-
-          <div class="column col-lg-4 col-md-6 color-2 ">
-            <div>
-              <h4 class=" ">Новая услуга 6 рук</h4>
-              <p class="para ">В чем фишка услуги в 6 рук? Разумеется, в экономии времени.Мы предоставляеем вам 3 услугу одновременно</p>
-              <a href="" class="btn logo-button top-margin"> З а п и с а т ь с я </a>
-            </div>
-          </div>
-          <div class="column col-lg-4 col-md-6 col-sm-6 back-image  ">
-            <img src="assets/images/16.jpg" alt="product" class="img-responsive ">
-          </div>
-          <div class="column col-lg-4 col-md-6 col-sm-6 back-image2 ">
-            <img src="assets/images/9.jpg" alt="product" class="img-responsive ">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="w3l-clients">
-  <div class="main-w3">
-    <div class="container">
-      <!-- main-slifer for price -->
-      <div class="main-slider text-center">
-        <ul>
-          <li>
-            <div class="slider-info">
-              <div class="d-grid hh14-text">
-                <div class="hh14-info">
-                  <h2> 15%</h2>
-                  <p class="para"> скидка на первое посещение салона</p>
-                  <!-- <h1>PRICE LIST</h1> -->
-                  <a href="services.html" class="btn logo-button top-margin">П о д р о б н е е </a>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- /main-slider -->
-    </div>
-  </div>
-</section>
-
-<section class="w3l-specification-6">
-  <div class="map">
-    <h3>Не можете найти нас?</h3>
-    <figure>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11703.441822579753!2d74.55807209014898!3d42.83356140356132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec9e9695e6a85%3A0xa5f969a5ece777ec!2z0KDQtdC60YLQvtGA0LDRgiDQo9C90LjQstC10YDRgdC40YLQtdGC0LAg0JzQsNC90LDRgQ!5e0!3m2!1sru!2skg!4v1684001769750!5m2!1sru!2skg" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </figure>
-    <address>
-      <dl>
-        <dt>Кыргызко-Турецкий университет Манас <br>
-          32, микрорайон Джал-23
-        </dt>
-      </dl>
-    </address>
-  </div>
-</section>
 <footer th:fragment="footer">
   <section  class="w3l-footer-29-main">
     <div class="footer-29 py-5">
