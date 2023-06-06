@@ -11873,3 +11873,221 @@ h3.color-white {
 
 
     line-height: 42px; } }
+
+
+
+.kadam{
+  margin: 0;
+  padding: 0
+}
+
+
+
+.kadam p {
+  color: grey
+}
+
+.kadam #heading {
+  text-transform: uppercase;
+  color: #673AB7;
+  font-weight: normal
+}
+
+.kadam #msform {
+  text-align: center;
+  position: relative;
+  margin-top: 20px
+}
+
+.kadam #msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative
+}
+
+.kadam .form-card {
+  text-align: left
+}
+
+.kadam #msform fieldset:not(:first-of-type) {
+  display: none
+}
+
+.kadam #msform input,
+.kadam #msform textarea {
+  padding: 8px 15px 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  background-color: #ECEFF1;
+  font-size: 16px;
+  letter-spacing: 1px
+}
+
+.kadam #msform input:focus,
+.kadam #msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #673AB7;
+  outline-width: 0
+}
+
+.kadam #msform .action-button {
+  width: 100px;
+  background: #673AB7;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 0px 10px 5px;
+  float: right
+}
+
+.kadam #msform .action-button:hover,
+.kadam #msform .action-button:focus {
+  background-color: #311B92
+}
+
+.kadam #msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px 10px 0px;
+  float: right
+}
+
+.kadam #msform .action-button-previous:hover,
+.kadam #msform .action-button-previous:focus {
+  background-color: #000000
+}
+
+.kadam .card {
+  z-index: 0;
+  border: none;
+  position: relative
+}
+
+.kadam .fs-title {
+  font-size: 25px;
+  color: #673AB7;
+  margin-bottom: 15px;
+  font-weight: normal;
+  text-align: left
+}
+
+.kadam .purple-text {
+  color: #673AB7;
+  font-weight: normal
+}
+
+.kadam .steps {
+  font-size: 25px;
+  color: gray;
+  margin-bottom: 10px;
+  font-weight: normal;
+  text-align: right
+}
+
+.kadam .fieldlabels {
+  color: gray;
+  text-align: left
+}
+
+.kadam #progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgrey
+}
+
+.kadam #progressbar .active {
+  color: #673AB7
+}
+
+.kadam #progressbar li {
+  list-style-type: none;
+  font-size: 15px;
+  width: 25%;
+  float: left;
+  position: relative;
+  font-weight: 400
+}
+
+.kadam #progressbar #account:before {
+  font-family: FontAwesome;
+  content: "\f13e"
+}
+
+.kadam #progressbar #personal:before {
+  font-family: FontAwesome;
+  content: "\f007"
+}
+
+.kadam #progressbar #payment:before {
+  font-family: FontAwesome;
+  content: "\f030"
+}
+
+.kadam #progressbar #confirm:before {
+  font-family: FontAwesome;
+  content: "\f00c"
+}
+
+.kadam #progressbar li:before {
+  width: 50px;
+  height: 50px;
+  line-height: 45px;
+  display: block;
+  font-size: 20px;
+  color: #ffffff;
+  background: lightgray;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  padding: 2px
+}
+
+.kadam #progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: lightgray;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: -1
+}
+
+.kadam #progressbar li.active:before,
+.kadam #progressbar li.active:after {
+  background: #673AB7
+}
+
+.kadam .progress {
+  height: 20px
+}
+
+.kadam .progress-bar {
+  background-color: #673AB7
+}
+
+.kadam .fit-image {
+  width: 100%;
+  object-fit: cover
+}

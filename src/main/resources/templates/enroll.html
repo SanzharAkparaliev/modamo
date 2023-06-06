@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: head"></head>
+<style>
+  .help-block.with-errors {
+    color: #ff5050;
+    margin-top: 5px;
+
+  }
+</style>
+<body id="about" style="background-color: #f8d7da;">
+
+<section class=" w3l-header-4 header-sticky">
+  <div th:insert="fragments.html :: header"></div>
+
+  <div class="container" style="font-family: 'Lato', sans-serif;">
+    <div class=" text-center mt-5 ">
+    </div>
+
+
+    <div class="row ">
+      <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-light" style="
+        .card{
+              margin-left: 10px;
+              margin-right: 10px;}">
+          <div class="card-body bg-light">
+
+            <div class = "container">
+              <form id="contact-form" role="form" method="post" th:action="@{/enroll/save}" th:object="${time}">
+
+
+
+                <div class="controls">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_name" style="color: #333;">Имя</label>
+                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_email" style="color: #333;">Email</label>
+                        <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_phone" style="color: #333;">Номер телефона</label>
+                        <input id="form_phone" type="phone" name="phone" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_specialist" style="color: #333;">Специалист</label>
+                        <input id="form_specialist" type="text" name="specialist" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." th:value="${time.getDay().getSpecialist().getName()}">
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_day" style="color: #333;">День</label>
+                        <input id="form_day" type="text" name="day" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." th:value="${time.getDay().getDay()}" >
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_time" style="color: #333;">Время</label>
+                        <input id="form_time" type="text" name="time" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." th:value="${time.getTime()}" >
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <br>
+                    <div class="col-md-12">
+
+                      <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                            " value="Записаться" style=".btn-send {
+                                                                      font-weight: 300;
+                                                                      text-transform: uppercase;
+                                                                      letter-spacing: 0.2em;
+                                                                      width: 80%;
+                                                                      margin-left: 3px;}">
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.8 -->
+
+      </div>
+      <!-- /.row-->
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+</section>
+  <div th:insert="fragments.html :: footer">
+
+  </div>
+  <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+  <!--bootstrap working-->
+  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- //bootstrap working-->
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- disable body scroll which navbar is in active -->
+
+  <!-- breadcrumbs -->
+</body>
+
+</html>
