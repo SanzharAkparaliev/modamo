@@ -42,27 +42,28 @@ public class SpecialistServiceImpl implements SpecialistService {
 
     @Override
     public Category getCategory(String categoryName) {
-        switch (categoryName){
-            case "Женский зал":
-                return Category.women;
-            case "Мужской зал":
-                return Category.man;
-            case "Ногтевой сервис":
-                return Category.nogti;
-            case "Брови/Ресницы":
-                return Category.brovi;
-            case "Make Up":
-                return Category.makeup;
-            case "Массаж":
-                return Category.face;
-            case "Ботокс":
-                return Category.botox;
-            case "Эпиляция":
-                return Category.epilation;
-            case "Подарочные сертификаты":
-                return Category.sertificate;
-            default:
-                return null;
-        }
-    }
+//        switch (categoryName){
+//            case "Женский зал":
+//                return Category.women;
+//            case "Мужской зал":
+//                return Category.man;
+//            case "Ногтевой сервис":
+//                return Category.nogti;
+//            case "Брови/Ресницы":
+//                return Category.brovi;
+//            case "Make Up":
+//                return Category.makeup;
+//            case "Массаж":
+//                return Category.face;
+//            case "Ботокс":
+//                return Category.botox;
+//            case "Эпиляция":
+//                return Category.epilation;
+//            case "Подарочные сертификаты":
+//                return Category.sertificate;
+//            default:
+//                return null;
+//        }
+
+    return  null;}
 }

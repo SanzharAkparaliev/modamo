@@ -1,13 +1,20 @@
 package com.madoma.entity;
 
-public enum Category {
-    women,
-    man,
-    nogti,
-    brovi,
-    makeup,
-    face,
-    botox,
-    epilation,
-    sertificate
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Data
+public class Category {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
 }

@@ -39,76 +39,76 @@ public class EnrollController {
 
     //**************************************************************************
     // for man
-    @GetMapping("/man/specialist")
-    public String getManSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.man);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/man/specialist")
+//    public String getManSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.man);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for women
-    @GetMapping("/women/specialist")
-    public String getWomenSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.women);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/women/specialist")
+//    public String getWomenSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.women);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for nogti
-    @GetMapping("/nogti/specialist")
-    public String getNogtiSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.nogti);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/nogti/specialist")
+//    public String getNogtiSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.nogti);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for brovi
-    @GetMapping("/brovi/specialist")
-    public String getBroviSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.brovi);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/brovi/specialist")
+//    public String getBroviSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.brovi);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for makeup
-    @GetMapping("/makeup/specialist")
-    public String getMakeupSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.makeup);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/makeup/specialist")
+//    public String getMakeupSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.makeup);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for face
-    @GetMapping("/face/specialist")
-    public String getFaceSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.face);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/face/specialist")
+//    public String getFaceSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.face);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for botox
-    @GetMapping("/botox/specialist")
-    public String getBotoxSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.botox);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/botox/specialist")
+//    public String getBotoxSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.botox);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for epilation
-    @GetMapping("/epilation/specialist")
-    public String getEpilationSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.epilation);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/epilation/specialist")
+//    public String getEpilationSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.epilation);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     // for sertificate
-    @GetMapping("/sertificate/specialist")
-    public String getSertificateSpecialist(Model model){
-        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.sertificate);
-        model.addAttribute("specialists", specialists);
-        return "choose_specialist";
-    }
+//    @GetMapping("/sertificate/specialist")
+//    public String getSertificateSpecialist(Model model){
+//        List<Specialist> specialists = specialistService.getSpecialistByCategoryAndFree(Category.sertificate);
+//        model.addAttribute("specialists", specialists);
+//        return "choose_specialist";
+//    }
 
     //**************************************************************************
 

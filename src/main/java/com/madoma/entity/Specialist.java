@@ -19,7 +19,7 @@ public class Specialist {
     private String name;
     private Boolean free;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Category category;
 
     @OneToMany(mappedBy = "specialist",cascade = CascadeType.REMOVE)
