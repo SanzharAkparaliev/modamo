@@ -2,6 +2,7 @@ package com.madoma.service.impl;
 
 import com.madoma.entity.Category;
 import com.madoma.entity.Specialist;
+import com.madoma.repository.CategoryRepository;
 import com.madoma.repository.SpecialistRepository;
 import com.madoma.service.SpecialistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class SpecialistServiceImpl implements SpecialistService {
     @Autowired
     private SpecialistRepository specialistRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public List<Specialist> getAllSpecialist() {
@@ -31,8 +34,9 @@ public class SpecialistServiceImpl implements SpecialistService {
     }
 
     @Override
-    public List<Specialist> getSpecialistByCategoryAndFree(Category category) {
-        return specialistRepository.findByCategoryAndFreeIsTrue(category);
+    public List<Specialist> getSpecialistByCategoryAndFree(String category) {
+        Category byName = categoryRepository.findByName(category);
+        return specialistRepository.findByCategoryAndFreeIsTrue(byName);
     }
 
     @Override
@@ -79,5 +83,16 @@ public class SpecialistServiceImpl implements SpecialistService {
     @Override
     public void deleteMaster(Long id) {
         specialistRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Specialist> findByCategory(String category) {
+        Category byName = categoryRepository.findByName(category);
+        return specialistRepository.findByCategory(byName);
+    }
+
+    @Override
+    public Specialist getByName(String neme) {
+        return specialistRepository.findByName(neme);
     }
 }

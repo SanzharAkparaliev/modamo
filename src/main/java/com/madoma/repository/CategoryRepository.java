@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
+    Category findByName(String name);
 }

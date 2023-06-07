@@ -1,6 +1,5 @@
 package com.madoma.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +14,23 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Day {
+@NoArgsConstructor
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String date;
+    private String clock;
+    private String teacherName;
+    private String gruppa;
 
-    @OneToMany(mappedBy = "day",cascade = CascadeType.ALL)
-    private Set<Event> eventSet;
+
+    @ManyToOne
+    private Specialist specialist;
+
+
+    @ManyToOne
+    private Day day;
 }

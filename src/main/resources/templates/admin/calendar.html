@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="/admin/fragments.html :: head"></head>
+<body>
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon bi bi-list"></div>
+    </div>
+</div>
+<div th:insert="admin/adminFragments.html :: header">
+
+</div>
+<div class="mobile-menu-overlay"></div>
+
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fc-toolbar fc-header-toolbar">
+                    <div class="fc-left" >
+<!--                        <h2 th:text="${place}"> </h2>-->
+                    </div>
+
+                    <div class="fc-center">
+                        <div class="btn-group">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item" th:if="${currentPage>1}">
+                                        <a href="#"  class="page-link"  th:href="@{'/admin/page/' + ${currentPage-1} + '/' + ${masterId}}">&laquo;</a>
+                                    </li>
+
+                                    <th:block th:if="${totalPages <= 6}">
+                                        <li class="page-item" th:each="i:${#numbers.sequence(1,totalPages)}">
+                                            <a href = "#" class="page-link" th:if="${currentPage != i}" th:href="@{'/admin/page/' + ${i} + '/' + ${masterId}}" th:text="${i}">1</a>
+                                            <a  class="active" href = "#" th:if="${currentPage == i}" th:href="@{'/admin/page/' + ${i}+ '/' + ${masterId} }" th:text="${i}">1</a>
+                                        </li>
+                                    </th:block>
+                                    <th:block th:if="${totalPages > 6}">
+                                        <th:block th:if="${currentPage <= 3 || currentPage > totalPages - 2}">
+                                            <li class="arrow-pagination" th:each="i:${#numbers.sequence(1,3)}">
+                                                <a href = "#" th:if="${currentPage != i }" th:href="@{'/admin/page/' + ${i}+ '/' + ${masterId}}" th:text="${i}">1</a>
+                                                <a  class="active" href = "#" th:if="${currentPage == i}" th:href="@{'/admin/page/' + ${i}+ '/' + ${masterId} }" th:text="${i}">1</a>
+                                            </li>
+                                            <a class="arrow-pagination" href = "#"  th:href="@{'/admin/page/' + 4 + '/' + ${masterId}}" >...</a>
+                                            <li class="arrow-pagination" th:each="i:${#numbers.sequence(totalPages - 2,totalPages)}">
+                                                <a href = "#" th:if="${currentPage != i }" th:href="@{'/admin/page/' + ${i} + '/' + ${masterId}}" th:text="${i}">1</a>
+                                                <a class="active" href = "#" th:if="${currentPage == i}" th:href="@{'/admin/page/' + ${i} + '/' + ${masterId}}" th:text="${i}">1</a>
+                                            </li>
+                                        </th:block>
+
+                                        <th:block th:if="${currentPage > 3 && currentPage < totalPages - 2}">
+                                            <a class="page-link" href = "#"  th:href="@{'/admin/page/' + ${currentPage - 5}+ '/' + ${masterId}}" >...</a>
+
+                                            <li class="arrow-pagination" th:each="i:${#numbers.sequence(currentPage - 2,currentPage + 2)}">
+                                                <a href = "#" class="page-link" th:if="${currentPage != i }" th:href="@{'/admin/page/' + ${i} + '/' + ${masterId}}" th:text="${i}">1</a>
+                                                <a class="active" href = "#" th:if="${currentPage == i}" th:href="@{'/admin/page/' + ${i} + '/' + ${masterId}}" th:text="${i}">1</a>
+                                            </li>
+
+                                            <a class="page-link" href = "#"  th:href="@{'/admin/page/' + ${currentPage + 3} + '/' + ${masterId}}" >...</a>
+                                        </th:block>
+                                    </th:block>
+
+
+                                    <li class="page-link" th:if="${currentPage < totalPages}">
+                                        <a href="#" th:href="@{'/admin/page/' + ${currentPage+1} + '/' + ${masterId}}">&raquo;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="fc-right">
+                        <button type="button" class="fc-today-button btn btn-primary disabled"  data-toggle="modal" data-target="#exampleModal">
+                            Добавить
+                        </button>
+                    </div>
+
+                </div>
+                <div class="schedule-table">
+
+                    <table class="table bg-white">
+                        <thead  >
+                        <tr >
+                            <th></th>
+                            <th th:each="day: ${days}" th:text="${day.getDate()}">25.11.2022</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td  class="day" >9:30</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '9:30'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>09:30-11:00</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >11:00</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '11:00'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>11:00-12:30</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >12:30</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '12:30'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>12:30-14:00</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >14:00</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '14:00'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>14:00-15:30</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >15:30</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '15:30'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>15:30-17:00</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >17:00</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '17:00'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>17:00-18:30</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="day" >18:30</td>
+                            <td class="active" th:each="event: ${events}" th:if="${event.getClock() == '18:30'}">
+                                <div class="active" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}">Weight Loss</h4>
+                                </div>
+                                <div class="hover" th:if="${event.getTeacherName() != null}">
+                                    <h4 th:text="${event.getTeacherName()}"></h4>
+                                    <h4 th:text="${event.getGruppa()}"></h4>
+                                    <p>18:30-20:00</p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:insert="admin/fragments.html :: footer"></div>
+
+
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

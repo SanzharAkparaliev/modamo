@@ -27,7 +27,7 @@
           <div class="card-body bg-light">
 
             <div class = "container">
-              <form id="contact-form" role="form" method="post" th:action="@{/enroll/save}" th:object="${time}">
+              <form id="contact-form" role="form" method="post" th:action="@{/enroll/save}" th:object="${event}">
 
 
 
@@ -61,7 +61,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="form_specialist" style="color: #333;">Специалист</label>
-                        <input id="form_specialist" type="text" name="specialist" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." th:value="${time.getDay().getSpecialist().getName()}">
+                        <input id="form_specialist" type="text" name="specialist" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." th:value="${event.getSpecialist().name}">
 
                       </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="form_day" style="color: #333;">День</label>
-                        <input id="form_day" type="text" name="day" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." th:value="${time.getDay().getDay()}" >
+                        <input id="form_day" type="text" name="day" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." th:value="${event.getDay().getDate()}">
 
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="form_time" style="color: #333;">Время</label>
-                        <input id="form_time" type="text" name="time" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." th:value="${time.getTime()}" >
+                        <input id="form_time" type="text" name="time" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."  th:value="${event.getClock()}">
 
                       </div>
                     </div>

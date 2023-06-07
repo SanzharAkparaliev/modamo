@@ -29,7 +29,9 @@
         <tbody>
         <tr th:each="master, iStat : ${masters}">
           <th scope="row" th:text="${iStat.index + 1}">1</th>
-          <td th:text="${master.name}"></td>
+            <td >
+              <a th:text="${master.name}" href="#" th:href="@{/admin/master/calendar/{id}(id=${master.id})}"></a>
+            </td>
           <td th:text="${master.category.name}"></td>
           <td style="display: none" th:text="${master.id}"></td>
           <td>

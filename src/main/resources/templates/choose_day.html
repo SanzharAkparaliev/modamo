@@ -16,7 +16,6 @@
     <div class="container" style="font-family: 'Lato', sans-serif;">
         <div class=" text-center mt-5 ">
 
-            <h1 style="margin-bottom: 40px;">Мужской зал</h1>
 
         </div>
 
@@ -30,7 +29,7 @@
                     <div class="card-body bg-light">
 
                         <div class = "container">
-                            <form id="contact-form" role="form" method="post" th:action="@{/enroll/specialist/day}">
+                            <form id="contact-form" role="form" method="post" th:action="@{/enroll/specialist/day/{id}(id=${masterId})}">
 
                                 <div class="controls">
 
@@ -41,7 +40,7 @@
                                                 <label for="form_day" style="color: #333;">Выберите дату</label>
                                                 <select id="form_day" name="day" class="form-control" required="required" data-error="Please specify your need.">
                                                     <div th:each="day: ${days}">
-                                                        <option th:text="${day.getDay()}"></option>
+                                                        <option th:text="${day.getDate()}"></option>
                                                     </div>
                                                 </select>
                                             </div>

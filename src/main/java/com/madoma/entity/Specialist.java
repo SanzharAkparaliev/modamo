@@ -1,9 +1,10 @@
 package com.madoma.entity;
 
-import jakarta.persistence.*;
+
 import lombok.*;
 
-import java.util.*;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +23,10 @@ public class Specialist {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "specialist",cascade = CascadeType.REMOVE)
-    private Set<Day> days;
+
+    @OneToMany(mappedBy = "specialist",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Event> events;
+
+
+
 }

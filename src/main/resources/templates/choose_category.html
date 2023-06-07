@@ -23,8 +23,6 @@
   <div class="container" style="font-family: 'Lato', sans-serif;">
     <div class=" text-center mt-5 ">
 
-      <h1 style="margin-bottom: 40px;">Мужской зал</h1>
-
     </div>
 
 
@@ -45,17 +43,9 @@
 
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="form_category" style="color: #333;">Выберите категорию</label>
-                        <select id="form_category" name="category" class="form-control" required="required" data-error="Please specify your need.">
-                            <option>Женский зал</option>
-                            <option>Мужской зал</option>
-                            <option>Ногтевой сервис</option>
-                            <option>Брови/Ресницы</option>
-                            <option>Make Up</option>
-                            <option>Массаж</option>
-                            <option>Ботокс</option>
-                            <option>Эпиляция</option>
-                            <option>Подарочные сертификаты</option>
+                        <label for="dropDownList" style="color: #333;">Выберите категорию</label>
+                        <select class="form-control form-select form-select-sm" id="dropDownList" name="category">
+                          <option  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                         </select>
                       </div>
 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:fragment="head">
+    <meta charset="utf-8" />
+    <title th:text="${title}"></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <link rel="stylesheet"  th:href="@{/assets/vendors/styles/core.css}" />
+    <link rel="stylesheet"  th:href="@{/assets/vendors/styles/icon-font.min.css}"/>
+    <link rel="stylesheet"  th:href="@{/assets/src/plugins/fullcalendar/fullcalendar.css}"/>
+    <link  rel="stylesheet" th:href="@{/assets/vendors/styles/style.css}" />
+
+    <link rel="stylesheet" th:href="@{/assets/src/styles/index.css}">
+    <style>
+        .fc-toolbar .fc-center .btn-group nav .page-item .active{
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #1b00ff;
+            background-color: #dee2e6;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+<div class="header" th:fragment="header">
+    <div class="header-left">
+        <div class="menu-icon bi bi-list"></div>
+
+    </div>
+</div>
+<div class="left-side-bar" th:fragment="side-bar">
+
+    <div class="menu-block customscroll">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu">
+                <li class="dropdown">
+                    <a href="#" th:href="@{/calendar}" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-calendar4-week"></span>
+                        <span class="mtext">Расписание</span>
+                    </a>
+
+                </li>
+                <li  class="dropdown"  sec:authorize="hasRole('ADMIN')" >
+                    <a  sec:authorize="isAuthenticated()"   href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-pencil"></span>
+                        <span class="mtext">Экзамен</span>
+                    </a>
+                    <ul  sec:authorize="hasRole('ADMIN')"  class="submenu">
+                        <li th:each="teacher: ${teachers}" >
+                            <a  sec:authorize="isAuthenticated()" href="javascript:;" class="dropdown-toggle " >
+                                <span class="mtext" th:text="${teacher.getName()}">Teacher</span>
+                            </a>
+                            <ul style="display: none">
+                                <li  class="dropdown " th:each="gruppa: ${allGruppa}" th:if="${gruppa.getTeacher().getId() == teacher.getId()}">
+                                    <a  sec:authorize="isAuthenticated()" href="#" th:href="@{/group/get/{id}(id=${gruppa.id})}" >
+                                        <span class="mtext" th:text="${gruppa.getName()}">AA</span>
+                                    </a>
+                                </li>
+
+                                <li class="dropdown ">
+                                    <a   sec:authorize="hasRole('ADMIN')"  href="#" th:href="@{/group/{id}(id=${teacher.id})}">
+                                        <span class="mtext" style="font-size:10px;">Добавить группу</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li  sec:authorize="hasRole('ADMIN')"  class="text-center">
+                            <button class="btn" data-toggle="modal" data-target="#exampleModalTeacher">
+                                <span class="mtext" style="font-size:15px; color: #FFFFFF">добавить учителя</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+
+                <li  sec:authorize="hasRole('ADMIN')"  class="dropdown">
+                    <a  sec:authorize="isAuthenticated()" href="#" th:href="@{/retake}" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-clock-history"></span>
+                        <span class="mtext">Пересдача</span>
+                    </a>
+
+                </li>
+                <li  sec:authorize="hasRole('MANAGER')"  class="dropdown">
+                    <a href="#" th:href="@{/manager}" class="dropdown-toggle no-arrow">
+                        <span class="micon fi-torso-business"></span>
+                        <span class="mtext">Менеджер</span>
+                    </a>
+                </li>
+                <li  sec:authorize="hasRole('ADMIN')" class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-file-person"></span>
+                        <span class="mtext">ADMIN</span>
+                    </a>
+                    <ul  sec:authorize="hasRole('ADMIN')"  class="submenu">
+                        <li  sec:authorize="hasRole('ADMIN')" >
+                            <a  sec:authorize="hasRole('ADMIN')"  href="#" th:href="@{/edit/calendar}" class="dropdown-toggle no-arrow">
+                                <span class="mtext">Расписание</span>
+                            </a>
+                        </li>
+                        <li  sec:authorize="hasRole('ADMIN')" >
+                            <a  sec:authorize="hasRole('ADMIN')"  href="#" th:href="@{/edit/teacher}" class="dropdown-toggle no-arrow">
+                                <span class="mtext">Teachers</span>
+                            </a>
+                        </li>
+                        <li  sec:authorize="hasRole('ADMIN')" >
+                            <a  sec:authorize="hasRole('ADMIN')"  href="#" th:href="@{/archive}" class="dropdown-toggle no-arrow">
+                                <span class="mtext">Архив</span>
+                            </a>
+                        </li>
+
+                        <li class="text-center"  sec:authorize="hasRole('ADMIN')" >
+                            <button class="btn" data-toggle="modal" data-target="#exampleModalTeacher">
+                                <span class="micon bi bi-plus-lg" style="font-size: 22px; color: #FFFFFF"></span>
+                            </button>
+                        </li>
+
+                    </ul>
+                </li>
+                <li   class="dropdown">
+                    <a sec:authorize="isAuthenticated()"  href="#" th:href="@{/login?logout}" class="dropdown-toggle no-arrow">
+                        <span class="micon bi-box-arrow-left"></span>
+                        <span class="mtext">logout</span>
+                    </a>
+                </li>
+                <li   class="dropdown">
+                    <a sec:authorize="isAnonymous()"  href="#" th:href="@{/login}" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-arrow-right-square"></span>
+                        <span class="mtext">Login</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="mobile-menu-overlay"></div>
+
+
+<div   th:fragment="footer">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Вы уверены, что хотите это удалить?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary"
+                            data-dismiss="modal">Закрыть</button>
+                    <a href="" class="btn btn-sm btn-danger" id="delRef">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="modal fade" id="exampleModalGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+
+<!--                <div class="modal-body">-->
+<!--                    <form method="post" action="#" th:action="@{/saveGroup}" >-->
+<!--                        <input type="text" class="form-control" placeholder="Группа" name="group" required>-->
+<!--                        <div class="modal-footer">-->
+<!--                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>-->
+<!--                            <button type="submit" id="crateBtn"  class="btn btn-primary">Сохранить</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="modal fade" id="exampleModalTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form method="post" action="#" th:action="@{/saveTeacher}" >
+                        <input type="text" class="form-control" placeholder="Клиент" name="teacher" required>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="submit"  class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <form method="post" th:action="@{/admin/saveEvent/master/{id}(id=${masterId})}" >
+                        <input type="text" class="form-control" placeholder="Клиент ФИО" name="teacherName" required>
+                        <label></label>
+                        <label></label>
+                        <input type="date" name="date" id="date" class="form-control">
+                        <div class="form-group">
+                            <label></label>
+                            <select class="form-control" name="clock" id="exampleFormControlSelect1">
+                                <option>9:30</option>
+                                <option>11:00</option>
+                                <option>12:30</option>
+                                <option>14:00</option>
+                                <option>15:30</option>
+                                <option>17:00</option>
+                                <option>18:30</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="submit"  class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/assets/vendors/scripts/core.js}" rel="script"></script>
+    <script th:src="@{/assets/vendors/scripts/script.min.js}" rel="script"></script>
+
+
+    <script type="text/javascript" >
+        $('document').ready(function (){
+            $('.dropdown .delBtn').on('click', function(event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#myModal #delRef').attr('href', href);
+                $('#myModal').modal();
+            });
+
+        })
+    </script>
+    <script type="text/javascript" >
+        $('document').ready(function (){
+            $('.dropdown .crtBtn').on('click', function(event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#exampleModalGroup #crateBtn').attr('href', href);
+                $('#exampleModalGroup').modal();
+            });
+
+        })
+    </script>
+</div>
+</body>
+</html>
