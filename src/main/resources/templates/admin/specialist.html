@@ -22,6 +22,7 @@
         <tr>
           <th class="table-plus">ID</th>
           <th >Name</th>
+          <th>Category</th>
           <th class="datatable-nosort">Actions</th>
         </tr>
         </thead>
@@ -29,13 +30,14 @@
         <tr th:each="master, iStat : ${masters}">
           <th scope="row" th:text="${iStat.index + 1}">1</th>
           <td th:text="${master.name}"></td>
-          <td style="display: none" th:text="${mamster.id}"></td>
+          <td th:text="${master.category.name}"></td>
+          <td style="display: none" th:text="${master.id}"></td>
           <td>
             <div class="table-actions">
               <a href="#" data-color="#265ed7" class="edit-btn" data-bs-toggle="modal" data-bs-target="#editModal">
                 <i class="icon-copy dw dw-edit2"></i>
               </a>
-              <a href="#"  th:href="@{/admin/category/delete/{id}(id=${master.id})}" data-color="#e95959">
+              <a href="#"  th:href="@{/admin/master/delete/{id}(id=${master.id})}" data-color="#e95959">
                 <i class="icon-copy dw dw-delete-3"></i>
               </a>
             </div>
@@ -61,8 +63,11 @@
       </div>
       <form action="/admin/saveMaster" method="post">
         <div class="modal-body">
-          <label class="col-form-label">Master</label>
-          <input type="text" name="master">
+          <select class="form-control form-select form-select-sm" id="dropDownList" name="category">
+            <option  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+          </select>
+          <label class="col-form-label">Master Name</label>
+          <input class="form-control" type="text" name="name" required>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,14 +82,19 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="eModalLabel">Add Category</h5>
+        <h5 class="modal-title" id="eModalLabel">Update Master</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="/admin/updateMaster" method="post">
         <div class="modal-body">
-          <label class="col-form-label">Category</label>
-          <input id="category" value="category" type="text" name="category">
-          <input type="hidden" id="id" name="id" >
+          <label class="col-form-label">Name</label>
+          <input class="form-control" id="name" value="name" type="text" name="name" required>
+          <input type="number" style="display: none;"  id="id" name="id"  >
+        </div>
+        <div class="modal-body">
+          <select class="form-control form-select form-select-sm"   name="category">
+            <option id="category"  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+          </select>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -95,17 +105,6 @@
   </div>
 </div>
 
-<!-- js -->
-<script src="vendors/scripts/core.js"></script>
-<script src="vendors/scripts/script.min.js"></script>
-<script src="vendors/scripts/process.js"></script>
-<script src="vendors/scripts/layout-settings.js"></script>
-<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-<script src="vendors/scripts/dashboard3.js"></script>
 <!-- Google Tag Manager (noscript) -->
 <noscript
 ><iframe
@@ -124,11 +123,10 @@
       return $(this).text();
     }).get();
 
-    category = rowData[0];
-    id = rowData[1]
-    console.log(category)
-
-    $('#category').val(category)
+    name = rowData[0];
+    id = rowData[2]
+    console.log("id" + id);
+    $('#name').val(name)
     $('#id').val(id)
   })
 </script>

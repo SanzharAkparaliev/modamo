@@ -30,6 +30,8 @@ public class AdminController {
 
    @GetMapping("/specialist")
     public String getSpecialistPage(Model model){
+       List<Category> categories = categoryService.findAll();
+       model.addAttribute("categories",categories);
        List<Specialist> allSpecialist = specialistService.getAllSpecialist();
        model.addAttribute("title","Modamo Specialist");
        model.addAttribute("masters",allSpecialist);
@@ -67,5 +69,25 @@ public class AdminController {
     public String deleteCategory(@PathVariable("id") Long id){
         categoryService.deleteCategory(id);
         return "redirect:/admin/category";
+    }
+
+    @PostMapping("/saveMaster")
+    public String saveMaster(@ModelAttribute Specialist specialist){
+        specialistService.saveMaster(specialist);
+        return "redirect:/admin/specialist";
+    }
+
+
+    @GetMapping("/master/delete/{id}")
+    public String deleteMaster(@PathVariable("id") Long id){
+        specialistService.deleteMaster(id);
+        return "redirect:/admin/specialist";
+    }
+
+    @PostMapping("/updateMaster")
+    public String updateMaster(@ModelAttribute Specialist specialist){
+        System.out.println("id" + specialist.getId());
+        specialistService.saveMaster(specialist);
+        return "redirect:/admin/specialist";
     }
 }

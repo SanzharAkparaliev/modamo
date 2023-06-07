@@ -66,4 +66,18 @@ public class SpecialistServiceImpl implements SpecialistService {
 //        }
 
     return  null;}
+
+    @Override
+    public void saveMaster(Specialist specialistModel) {
+        Specialist specialist = specialistModel.getId() == null ? new Specialist() : specialistRepository.getById(specialistModel.getId());
+                specialist.setCategory(specialistModel.getCategory());
+        specialist.setName(specialistModel.getName());
+
+        specialistRepository.save(specialist);
+    }
+
+    @Override
+    public void deleteMaster(Long id) {
+        specialistRepository.deleteById(id);
+    }
 }

@@ -14,4 +14,7 @@ public interface SpecialistService {
     List<Specialist> getSpecialistByCategoryAndFree(Category category);
     Specialist getSpecialistByName(String name);
     Category getCategory(String categoryName);
+
+    void saveMaster(Specialist specialist);
+    void  deleteMaster(Long id);
 }
