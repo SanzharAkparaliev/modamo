@@ -8,18 +8,22 @@ import com.madoma.service.CategoryService;
 import com.madoma.service.ClientService;
 import com.madoma.service.SpecialistService;
 import com.madoma.service.impl.DayService;
+import com.madoma.service.impl.EmailService;
 import com.madoma.service.impl.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/enroll")
 public class EnrolController {
+    Random random = new Random(1000);
     @Autowired
     private CategoryService categoryService;
     @Autowired
@@ -30,6 +34,8 @@ public class EnrolController {
     private EventService eventService;
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private EmailService emailService;
     @GetMapping("/category")
     public String getCategoryPage(Model model){
         List<Category> categories = categoryService.findAll();
@@ -115,10 +121,28 @@ public class EnrolController {
                              @RequestParam("phone") String clientphone,
                              @RequestParam("specialist") String specialist,
                              @RequestParam("day") String day,
-                             @RequestParam("time") String time){
-        Specialist byName = specialistService.getByName(specialist);
-        eventService.saveEvent(day,time,clientName, Math.toIntExact(byName.getId()));
-        clientService.createCrops(clientName,clientEmail,clientphone,specialist,day,time);
+                             @RequestParam("time") String time,
+                             Model model, HttpSession session){
+        int otp = random.nextInt(999999);
+
+        //write code for send otp to email...
+        String subject = "Modamo";
+        String message = ""
+                + "<div style='border:1px solid #e2e2e2;padding:20px'>"
+                +"<h1>"+"Саламатсызбы?"+clientName+"</h1>"
+                +"<h3>"
+                + "Сиз ийгиликтуу жазылдыныз!" +
+                "</h3>"
+                +"</div>";
+        String to = clientEmail;
+        boolean flag = emailService.sendEmail(subject,message,to);
+        if(flag) {
+            Specialist byName = specialistService.getByName(specialist);
+            eventService.saveEvent(day, time, clientName, Math.toIntExact(byName.getId()));
+            clientService.createCrops(clientName, clientEmail, clientphone, specialist, day, time);
+        }else {
+            session.setAttribute("message","Электрондук почтаңыздын идентификаторун текшериңиз !!");
+        }
         return "redirect:/";
     }
 }
