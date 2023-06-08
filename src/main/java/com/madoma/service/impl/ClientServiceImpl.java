@@ -6,6 +6,8 @@ import com.madoma.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -28,5 +30,10 @@ public class ClientServiceImpl implements ClientService {
         client.setDay(day);
         client.setTime(time);
         clientRepository.save(client);
+    }
+
+    @Override
+    public List<Client> getAll() {
+        return clientRepository.findAll();
     }
 }
