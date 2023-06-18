@@ -1,9 +1,6 @@
 package com.madoma.controller;
 
-import com.madoma.entity.Category;
-import com.madoma.entity.Day;
-import com.madoma.entity.Event;
-import com.madoma.entity.Specialist;
+import com.madoma.entity.*;
 import com.madoma.service.CategoryService;
 import com.madoma.service.ClientService;
 import com.madoma.service.SpecialistService;
@@ -129,20 +126,87 @@ public class EnrolController {
         String subject = "Modamo";
         String message = ""
                 + "<div style='border:1px solid #e2e2e2;padding:20px'>"
-                +"<h1>"+"Саламатсызбы?"+clientName+"</h1>"
+                +"<h1>"+"Modamo Beauty Studio"+"</h1>"
                 +"<h3>"
-                + "Сиз ийгиликтуу жазылдыныз!" +
-                "</h3>"
+                +"OTP   : "
+                +"<b>"+otp
+                +"</n>"
+                +"</h3>"
                 +"</div>";
         String to = clientEmail;
         boolean flag = emailService.sendEmail(subject,message,to);
-        if(flag) {
-            Specialist byName = specialistService.getByName(specialist);
-            eventService.saveEvent(day, time, clientName, Math.toIntExact(byName.getId()));
-            clientService.createCrops(clientName, clientEmail, clientphone, specialist, day, time);
+        if(flag){
+            session.setAttribute("myotp",otp);
+            session.setAttribute("email",clientEmail);
+            session.setAttribute("client",clientName);
+            session.setAttribute("email",clientEmail);
+            session.setAttribute("phone",clientphone);
+            session.setAttribute("master",specialist);
+            session.setAttribute("day",day);
+            session.setAttribute("time",time);
+
+            model.addAttribute("user",new Client());
+            model.addAttribute("title", "OTP текшерүү");
+            return "verify_otp";
         }else {
             session.setAttribute("message","Электрондук почтаңыздын идентификаторун текшериңиз !!");
+            model.addAttribute("user",new Client());
+            model.addAttribute("title", "OTP текшерүү");
+            return "verify_otp";
         }
-        return "redirect:/";
+
+    }
+
+
+    @PostMapping("/verify-otp")
+    public String verifyOtp(@RequestParam("otp") int otp,HttpSession session,Model model){
+        System.out.println("WORKKKKK");
+        int myOtp = (int)session.getAttribute("myotp");
+        String email = (String)session.getAttribute("email");
+
+        if(myOtp==otp){
+            //password change from
+           List< Client> user = clientService.getUserByUsername(email);
+            if(user==null){
+                //send error message
+
+                session.setAttribute("message","Мындай электрондук почта менен катталынган эмес!!");
+                model.addAttribute("user",new Client());
+                model.addAttribute("title", "OTP текшерүү");
+
+                return "verify_otp";
+            }else{
+
+                eventService.saveEvent((String) session.getAttribute("day"),
+                        (String) session.getAttribute("time"),
+                        (String) session.getAttribute("client"),
+                        (String) session.getAttribute("master"),
+                        (String) session.getAttribute("phone"));
+                clientService.createCrops((String) session.getAttribute("client"),
+                        (String) session.getAttribute("email"),
+                        (String) session.getAttribute("phone"),
+                        (String) session.getAttribute("master"),
+                        (String) session.getAttribute("day"),
+                        (String) session.getAttribute("time"));
+
+                model.addAttribute("user",new Client());
+                String subject = "Modamo";
+                String message = ""
+                        + "<div style='border:1px solid #e2e2e2;padding:20px'>"
+                        +"<h1>"+"Modamo Beauty Studio"+"</h1>"
+                        +"<h3>"
+                        +"Siz uiguluktuu kattaldynyz , "
+                        +"<b>"+(String) session.getAttribute("client")
+                        +"</n>"
+                        +"</h3>"
+                        +"</div>";
+                String to = (String) session.getAttribute("email");
+                boolean flag = emailService.sendEmail(subject,message,to);
+                return "redirect:/";
+        }}
+        else {
+            session.setAttribute("message","Сиз туура эмес otp киргиздиңиз !!");
+            return "verify_otp";
+        }
     }
 }

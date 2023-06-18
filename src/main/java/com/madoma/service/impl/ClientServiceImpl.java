@@ -36,4 +36,9 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getAll() {
         return clientRepository.findAll();
     }
+
+    @Override
+    public List<Client> getUserByUsername(String email) {
+        return clientRepository.findByEmail(email);
+    }
 }

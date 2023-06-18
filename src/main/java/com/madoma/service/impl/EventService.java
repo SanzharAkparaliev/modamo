@@ -40,15 +40,16 @@ public class EventService {
     }};
 
 
-    public void saveEvent(String date, String clock, String teacherName,Integer masterId){
+    public void saveEvent(String date, String clock, String teacherName,String master,String phone){
         try {
             System.out.println("Master");
             Day day = dayService.getDay(date);
-            Optional<Specialist> specialistById = specialistService.getSpecialistById(Long.valueOf(masterId));
+            Optional<Specialist> specialistById = Optional.ofNullable(specialistService.getSpecialistByName(master));
             Event eventModel = eventRepository.findByDayAndClockAndSpecialist(day,clock,specialistById.get());
             if(eventModel.getTeacherName() == null){
                 eventModel.setTeacherName(teacherName);
                 eventModel.setSpecialist(specialistById.get());
+                eventModel.setPhone(phone);
                 eventRepository.save(eventModel);
             }
         }catch (RuntimeException exception){

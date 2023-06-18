@@ -44,7 +44,7 @@ public class MvcConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-        userDetailsManager.createUser(User.withUsername("admin").password("admin").roles("ADMIN").build());
+        userDetailsManager.createUser(User.withUsername("modamo342@gmail.com").password("Modamobeautystudio").roles("ADMIN").build());
         return userDetailsManager;
     }
 

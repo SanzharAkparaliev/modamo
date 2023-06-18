@@ -3,6 +3,8 @@ package com.madoma.controller;
 
 import com.madoma.entity.Day;
 import com.madoma.entity.Event;
+import com.madoma.entity.Specialist;
+import com.madoma.service.SpecialistService;
 import com.madoma.service.impl.DayService;
 import com.madoma.service.impl.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,6 +26,8 @@ public class MasterController {
     private DayService dayService;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private SpecialistService specialistService;
 
 
     @GetMapping("/master/calendar/{id}")
@@ -57,9 +62,12 @@ public class MasterController {
     public String saveEvent(@RequestParam("teacherName") String teacherName,
                             @RequestParam("clock") String clock,
                             @RequestParam("date") String date,
+                            @RequestParam("phone") String phone,
                             @PathVariable("id") Integer masterId){
         System.out.println("id " + masterId);
-        eventService.saveEvent(date,clock,teacherName,masterId);
+        Optional<Specialist> specialistById = specialistService.getSpecialistById(Long.valueOf(masterId));
+
+        eventService.saveEvent(date,clock,teacherName,specialistById.get().getName(),phone);
         return "redirect:/admin/master/calendar/" + masterId;
     }
 

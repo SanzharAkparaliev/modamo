@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: head">
+</head>
+<body id="about">
+
+<section class=" w3l-header-4 header-sticky">
+    <div th:insert="fragments.html :: header">
+
+    </div>
+
+
+
+
+
+    <div class="container" style="font-family: 'Lato', sans-serif;">
+        <div class=" text-center mt-5 ">
+
+
+        </div>
+
+
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light" style="
+        .card{
+              margin-left: 10px;
+              margin-right: 10px;}">
+                    <div class="card-body bg-light">
+
+                        <div class = "container">
+
+                                <div class="controls">
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="alert alert-success mt-3" role="alert">
+                                                Биз сиздин электрондук почтаңызга OTP  жөнөттүк...
+                                            </div>
+                                            <div th:if="${session.message}" class="container">
+                                                <div  class="alert alert-danger my-2 text-center" role="alert">
+                                                    <span th:text="${session.message}"></span>
+                                                </div>
+                                                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                                            </div>
+                                            <form action="" th:action="@{/enroll/verify-otp}" method="post">
+                                                <div class="form-group">
+                                                    <input required type="text" name="otp" placeholder="Бул жерге OTP  киргизиңиз" class="form-control">
+                                                </div>
+                                                <div class="container text-center">
+                                                    <button class="btn btn-success">Текшерүү</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.8 -->
+
+            </div>
+            <!-- /.row-->
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+
+
+
+</section>
+
+<footer th:insert="fragments.html :: footer">
+
+</footer>
+<script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+    $(function () {
+        $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+        })
+    });
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!-- breadcrumbs -->
+
+</body>
+
+</html>

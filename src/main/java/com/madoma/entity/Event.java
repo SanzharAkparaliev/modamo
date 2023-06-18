@@ -25,6 +25,7 @@ public class Event {
     private String clock;
     private String teacherName;
     private String gruppa;
+    private String phone;
 
 
     @ManyToOne

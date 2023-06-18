@@ -14,4 +14,6 @@ public interface ClientService {
                      String time);
 
     public List<Client> getAll();
+
+   List<Client> getUserByUsername(String email);
 }
