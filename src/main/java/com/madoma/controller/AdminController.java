@@ -2,9 +2,11 @@ package com.madoma.controller;
 
 
 import com.madoma.entity.Category;
+import com.madoma.entity.Price;
 import com.madoma.entity.Specialist;
 import com.madoma.service.CategoryService;
 import com.madoma.service.SpecialistService;
+import com.madoma.service.impl.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class AdminController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private PriceService priceService;
     @GetMapping
     public String getAdminPage(Model model ){
         model.addAttribute("title","Modamo Admin Panel");
@@ -90,4 +94,20 @@ public class AdminController {
         specialistService.saveMaster(specialist);
         return "redirect:/admin/specialist";
     }
+
+    @GetMapping("/price")
+    public String getPricePage(Model model){
+        List<Price> prices = priceService.getAll();
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
+        model.addAttribute("prices",prices);
+        return "/admin/price";
+    }
+
+    @PostMapping("/savePrice")
+    public String savePrice(@ModelAttribute Price price){
+        priceService.savePrice(price);
+        return "redirect:/admin/price";
+    }
+
 }

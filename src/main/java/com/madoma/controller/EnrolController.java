@@ -120,21 +120,17 @@ public class EnrolController {
                              @RequestParam("day") String day,
                              @RequestParam("time") String time,
                              Model model, HttpSession session){
+        System.out.println("email " + clientEmail);
         int otp = random.nextInt(999999);
 
         //write code for send otp to email...
         String subject = "Modamo";
-        String message = ""
-                + "<div style='border:1px solid #e2e2e2;padding:20px'>"
-                +"<h1>"+"Modamo Beauty Studio"+"</h1>"
-                +"<h3>"
-                +"OTP   : "
-                +"<b>"+otp
-                +"</n>"
-                +"</h3>"
-                +"</div>";
-        String to = clientEmail;
+        String message = "OTP:" + otp + "\n\n";
+        String to = (String) session.getAttribute("email");
+        System.out.println(to);
         boolean flag = emailService.sendEmail(subject,message,to);
+        session.setAttribute("email",clientEmail);
+
         if(flag){
             session.setAttribute("myotp",otp);
             session.setAttribute("email",clientEmail);
@@ -191,17 +187,13 @@ public class EnrolController {
 
                 model.addAttribute("user",new Client());
                 String subject = "Modamo";
-                String message = ""
-                        + "<div style='border:1px solid #e2e2e2;padding:20px'>"
-                        +"<h1>"+"Modamo Beauty Studio"+"</h1>"
-                        +"<h3>"
-                        +"Siz uiguluktuu kattaldynyz , "
-                        +"<b>"+(String) session.getAttribute("client")
-                        +"</n>"
-                        +"</h3>"
-                        +"</div>";
+                String message = "Салон красоты Modamo\n\n" +
+                        "Вы успешно записаны, " + (String) session.getAttribute("client") + "\n\n" +
+                        "Благодарим вас за запись в наш салон красоты Modamo. Мы с нетерпением ждем вашего визита.\n\n" +
+                        "Если у вас возникнут вопросы или вам потребуется изменить вашу запись, не стесняйтесь связаться с нами. \n\n"
+                        +"наши контакты: +996 (0ххх)-хх-хх-хх";
                 String to = (String) session.getAttribute("email");
-                boolean flag = emailService.sendEmail(subject,message,to);
+                boolean flag = emailService.sendEmail(subject, message, to);
                 return "redirect:/";
         }}
         else {

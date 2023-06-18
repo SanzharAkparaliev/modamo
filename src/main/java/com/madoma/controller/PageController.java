@@ -1,11 +1,22 @@
 package com.madoma.controller;
 
+import com.madoma.entity.Category;
+import com.madoma.entity.Price;
+import com.madoma.service.CategoryService;
+import com.madoma.service.impl.PriceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class PageController {
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private PriceService priceService;
 
     @GetMapping("/about")
     public String getAboutPage(Model model){
@@ -70,6 +81,11 @@ public class PageController {
     @GetMapping("/price")
     public String getPricePage(Model model){
         model.addAttribute("title","Modamo Beauty Studio | Prices ");
+
+        List<Price> price = priceService.getAll();
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
+        model.addAttribute("prices",price);
         return "price";
     }
 

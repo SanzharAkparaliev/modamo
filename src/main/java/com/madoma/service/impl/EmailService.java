@@ -23,7 +23,7 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("taalaibekuulusanzhar@gmail.com","tbjfgsvsdfqxhorc");
+                return new PasswordAuthentication("modamo342@gmail.com","ngkuijquriacqukm");
             }
         });
 
@@ -33,9 +33,8 @@ public class EmailService {
         try {
             m.setFrom(from);
             m.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            m.setSubject(subject);
+            m.setSubject(subject,"UTF-8");
             m.setText(message);
-            m.setContent(message,"text/html");
             Transport.send(m);
             f=true;
         }catch (Exception e){

@@ -14,107 +14,22 @@
         <div class="about-info">
             <h2> Прайс - лист салона красоты "MODAMO"</h2>      
         </div>
-        <a href="#" class="button">Записаться онлайн</a>
+        <a  th:href="@{/enroll/category}" class="button">Записаться онлайн</a>
       </section>
 <section>
     <div class ="pri">
        <div class="grid_4">
             <ul class="list l1">
                <li>
-                     <div class="price1"><a href="#">Женский зал</a>
-                        <ul class="price">
-                        <li><a href="#">-Стрижки на короткие короткие волосы</a><span>250сом</span></li>
-                        <li><a href="#">-Стрижка каре/Боб каре </a><span>400сом/ 450сом</span></li>
-                        <li><a href="#">-Стрижка на средние волосы </a><span>350сом</span></li>
-                        <li><a href="#">-Каскад</a><span>400сом</span></li>
-                        <li><a href="#">-Кончики/челка</a><span>150сом</span></li>
-                        <li><a href="#">-Укладка на короткие волосы</a><span>400сом</span></li>
-                        <li><a href="#">-Укладка на длинные волосы</a><span>600сом</span></li>
-                        <li><a href="#">-Локоны</a><span>от 300сом</span></li>
-                        <li><a href="#">-Вечерние прически</a><span>от 500сом</span></li>
-                        <li><a href="#">-Свадебные прически</a><span>1200сом</span></li>
-                        <li><a href="#">-Ламирнирование волос</a><span>от 1500сом</span></li>
-                        <li><a href="#">-Хим. завивка</a><span>от 2000сом</span></li>
-                        <li><a href="#">-Сложное окрашивание волос</a><span>от 3000сом</span></li>
+                     <div class="price1" th:each="category: ${categories}">
+                         <a href="#" th:text="${category.getName()}">Женский зал</a>
+                        <ul class="price" th:each="price: ${prices}">
+                        <li  th:if="${category.getId() == price.category.getId()}">
+                            <a href="#" th:text="${price.getName()}"></a><span th:text="${price.getSum()}">250сом</span>
+                        </li>
                         </ul>
                     </div>
                  </li>
-                <li>
-                    <div class="price1"><a href="#">Мужской зал</a>
-                    <ul class="price">
-                        <li><a href="#">-Детские</a><span>150сом/200сом</span></li>
-                        <li><a href="#">-Стрижки волос налысо с машинкой</a><span>150сом</span></li>
-                        <li><a href="#">-Спортивный</a><span>200сом</span></li>
-                        <li><a href="#">-Модельный/короткий/средний</a><span>250сом</span></li>
-                        <li><a href="#">-Канадка</a><span>350сом</span></li>
-                        <li><a href="#">-Площадка</a><span>350сом</span></li>
-                        <li><a href="#">-Московский</a><span>300сом</span></li>
-                        <li><a href="#">-Барбершоп</a><span>800сом</span></li>
-                    </ul>
-                </div>
-                 </li>
-                 <li>
-                    <div class="price1"><a href="#">Ногтевой сервис</a>
-                    <ul class="price">
-                        <li><a href="#">-Маникюр</a><span>300сом</span></li>
-                        <li><a href="#">-Маникюр с покрытием</a><span>600сом</span></li>
-                        <li><a href="#">-Гель лак с укреплением</a><span>900сом</span></li>
-                        <li><a href="#">-Френч</a><span>+100сом</span></li>
-                        <li><a href="#">-Дизайн</a><span>+100сом</span></li>
-                        <li><a href="#">-Педикюр классический</a><span>650сом</span></li>
-                        <li><a href="#">-Педикюр с покрытием</a><span>800сом</span></li>
-                        <li><a href="#">-Педикюр с гель лаком</a><span>1200сом</span></li>
-                        <li><a href="#">-Маникюр + педикюр</a><span>1800сом</span></li>
-                    </ul>
-                 </li>
-                 <li>
-                    <div class="price1"><a href="#">Брови / ресницы</a>
-                    <ul class="price">
-                        <li><a href="#">-Коррекция бровей</a><span>150сом</span></li>
-                        <li><a href="#">-Покраска бровей </a><span>150сом</span></li>
-                        <li><a href="#">-Покраска ресниц</a><span>150сом</span></li>
-                        <li><a href="#">-Наращвание ресниц 2D/3D</a><span>от 900сом</span></li>
-                        <li><a href="#">-Снятие нарощенных ресниц</a><span>200сом</span></li>
-                        <li><a href="#">-Ламинирование ресниц</a><span>700сом</span></li>
-                        <li><a href="#">-Ламинирование бровей</a><span>1000сом</span></li>
-                        <li><a href="#">-Пудровые напыление бровей</a><span>3000сом</span></li>
-                    </ul>
-                </div>
-                 </li>
-                 <li>
-                    <div class="price1"><a href="#">Make - Up</a>
-                    <ul class="price">
-                        <li><a href="#">-Свадебный</a><span>от 1200сом</span></li>
-                        <li><a href="#">-Свадебный пробный</a><span>600сом</span></li>
-                        <li><a href="#">-Вечерний</a><span>1000сом</span></li>
-                        <li><a href="#">-На выпускной</a><span>800сом</span></li>
-                        <li><a href="#">-Для фото и видеосъемок</a><span>1500сом</span></li>
-            
-                    </ul>
-                </div>
-                 </li>
-                 <li>
-                    <div class="price1"><a href="#"> Botox</a>
-                    <ul class="price">
-                        <li><a href="#">-Ботокс 1 ед</a><span>90сом</span></li>
-                        <li><a href="#">-Лифтинг бровей</a><span>3000сом</span></li>
-                        <li><a href="#">-Гусиные лапки</a><span>8000сом</span></li>
-                        <li><a href="#">-Область межбровья</a><span>6500сом</span></li>
-                        <li><a href="#">-Лифтинг углов губ</a><span>400сом</span></li>
-                        <li><a href="#">-гипергидроз</a><span>9000сом</span></li>
-                </div>
-                 </li>
-                 <li>
-                    <div class="price1"><a href="#"> Эпиляция</a>
-                    <ul class="price">
-                        <li><a href="#">-Восковая депиляция </a><span>от 200сом</span></li>
-                        <li><a href="#">-Эпиляция руки до локтя</a><span>650сом</span></li>
-                        <li><a href="#">-Подмышки</a><span>700сом</span></li>
-                        <li><a href="#">-Ноги полн</a><span>1700сом</span></li>
-                        <li><a href="#">-Ноги голень</a><span>1200сом</span></li>
-               </div>
-                 </li>
-
                 
              </div>
         </div> 

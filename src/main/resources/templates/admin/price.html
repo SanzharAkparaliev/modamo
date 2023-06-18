@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/adminFragments.html :: head">
+
+</head>
+<body>
+<div th:insert="admin/adminFragments.html :: header">
+
+</div>
+<div class="main-container">
+  <div class="xs-pd-20-10 pd-ltr-20">
+    <div class="card-box pb-10">
+      <div class="h5 pd-20 mb-0">Прайс</div>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Добавить
+      </button>
+
+
+      <table class="data-table table nowrap">
+        <thead>
+        <tr>
+          <th class="table-plus">ID</th>
+          <th>Стиль</th>
+          <th>Категория</th>
+<!--          <th class="datatable-nosort">Действия</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="price, iStat : ${prices}">
+          <th scope="row" th:text="${iStat.index + 1}">1</th>
+          <td th:text="${price.name}"></td>
+          <td th:text="${price.getCategory().getName()}"></td>
+          <td style="display: none" th:text="${price.id}"></td>
+<!--          <td>-->
+<!--            <div class="table-actions">-->
+<!--              <a href="#" data-color="#265ed7" class="edit-btn" data-bs-toggle="modal" data-bs-target="#editModal">-->
+<!--                <i class="icon-copy dw dw-edit2"></i>-->
+<!--              </a>-->
+<!--              <a href="#"  th:href="@{/admin/price/delete/{id}(id=${price.id})}" data-color="#e95959">-->
+<!--                <i class="icon-copy dw dw-delete-3"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </td>-->
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавить Прайс</h5>
+        <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="/admin/savePrice" method="post">
+        <div class="modal-body">
+
+          <label for="dropDownList" style="color: #333;">Выберите категорию</label>
+          <select class="form-control form-select form-select-sm" id="dropDownList" name="category">
+            <option  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+          </select>
+          <label class="col-form-label">Стиль</label>
+          <select class="form-control form-select form-select-sm" name="name">
+            <option>Стрижки на короткие короткие волосы</option>
+            <option>Стрижка каре/Боб каре</option>
+            <option>Стрижка на средние волосы</option>
+            <option>Каскад</option>
+            <option>Кончики/челка</option>
+            <option>Укладка на короткие волосы</option>
+            <option>Укладка на длинные волосы</option>
+            <option>Локоны</option>
+            <option>Вечерние прически</option>
+            <option>Свадебные прически</option>
+            <option>Ламирнирование волос</option>
+            <option>Хим. завивка</option>
+            <option>Сложное окрашивание волос</option>
+            <option>Детские</option>
+            <option>Стрижки волос налысо с машинкой</option>
+            <option>Спортивный</option>
+            <option>Модельный/короткий/средний</option>
+            <option>Канадка</option>
+            <option>Площадка</option>
+            <option>Московский</option>
+            <option>Барбершоп</option>
+            <option>Маникюр</option>
+            <option>Маникюр с покрытием</option>
+            <option>Гель лак с укреплением</option>
+            <option>Френч</option>
+            <option>Дизайн</option>
+            <option>Педикюр классический</option>
+            <option>Педикюр с покрытием</option>
+            <option>Педикюр с гель лаком</option>
+            <option>Маникюр + педикюр</option>
+            <option>Коррекция бровей</option>
+            <option>Покраска бровей </option>
+            <option>Покраска ресниц</option>
+            <option>Наращвание ресниц 2D/3D</option>
+            <option>Снятие нарощенных ресниц</option>
+            <option>Ламинирование ресниц</option>
+            <option>Ламинирование бровей</option>
+            <option>Пудровые напыление бровей</option>
+            <option>Свадебный</option>
+            <option>Свадебный пробный</option>
+            <option>Вечерний</option>
+            <option>На выпускной</option>
+            <option>Для фото и видеосъемок</option>
+            <option>Ботокс 1 ед</option>
+            <option>Лифтинг бровей</option>
+            <option>Гусиные лапки</option>
+            <option>Область межбровья</option>
+            <option>Лифтинг углов губ</option>
+            <option>гипергидроз</option>
+            <option>Восковая депиляция</option>
+            <option>Эпиляция руки до локтя</option>
+            <option>Подмышки</option>
+            <option>Ноги полн</option>
+            <option>Ноги голень</option>
+
+
+          </select>
+          <label class="col-form-label">Цена</label>
+          <input type="text" class="form-control" name="sum">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-danger">Сохранить </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eModalLabel">Add Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="/admin/updatePrice" method="post">
+        <div class="modal-body">
+          <label class="col-form-label">Category</label>
+          <input id="category" value="category" type="text" name="category">
+          <input type="hidden" id="id" name="id" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- js -->
+<script src="vendors/scripts/core.js"></script>
+<script src="vendors/scripts/script.min.js"></script>
+<script src="vendors/scripts/process.js"></script>
+<script src="vendors/scripts/layout-settings.js"></script>
+<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<script src="vendors/scripts/dashboard3.js"></script>
+<!-- Google Tag Manager (noscript) -->
+<noscript
+><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+></iframe
+></noscript>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $(document).on("click",".edit-btn",function (){
+    var tr = $(this).closest('tr')
+    var rowData = tr.children('td').map(function() {
+      return $(this).text();
+    }).get();
+
+    category = rowData[0];
+    id = rowData[1]
+    console.log(category)
+
+    $('#category').val(category)
+    $('#id').val(id)
+  })
+</script>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

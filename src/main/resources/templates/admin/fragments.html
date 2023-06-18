@@ -23,6 +23,27 @@
             background-color: #dee2e6;
             border: 1px solid #dee2e6;
         }
+
+        schedule-table table tbody td .hover {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 120%;
+            height: 200%;
+            transform: translate(-50%, -50%) scale(0.8);
+            z-index: 99;
+            background: #f0f0f0 !important;
+            border-radius: 0.25rem;
+            padding: 25px 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s linear 0s;
+        }
+
+        .btn-primary{
+            border: 2px solid #f567a6 !important;
+            background: #f567a6 !important;
+        }
     </style>
 </head>
 <body>
